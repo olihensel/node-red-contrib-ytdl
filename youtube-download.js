@@ -39,7 +39,14 @@ module.exports = function(RED){
                 node.status({fill:"blue", shape:"ring", text:progress.percentage.toFixed(2) + "%"});
             });
 
-            var ytdl = Ytdl(url_, { filter: function(format) { return format.container === 'mp4'; } });
+            //default video
+            var options = { filter: function(format) { return format.container === 'mp4'; } };
+            //audio only
+            if(msg.audioonly){
+              options =  { filter: 'audioonly'};
+            }
+
+            var ytdl = Ytdl(url_, options);
 
             ytdl.on('response', function(response) {
                 progressStream.setLength( response.headers["content-length"] );
