@@ -17,9 +17,23 @@ module.exports = function(RED){
 
         this.on('input', function(msg){
             node.status({fill:"blue", shape:"ring", text:"Starting"});
-            var path_ = RED.util.evaluateNodeProperty(node.path, node.pathType, node, msg);
-            var url_ = RED.util.evaluateNodeProperty(node.url, node.urlType, node, msg);
+            var path_ = msg.path;
+            if(!path_){
+              path_ = RED.util.evaluateNodeProperty(node.path, node.pathType, node, msg);
+            }
+            var url_ = msg.payload;
+            if(!url_){
+              url_ = RED.util.evaluateNodeProperty(node.url, node.urlType, node, msg);
+            }
 
+            if(!path_){
+              node.status({fill:"red", shape:"ring", text:"No path provided"});
+              return;
+            }
+            if(!url_){
+              node.status({fill:"red", shape:"ring", text:"No url provided"});
+              return;
+            }
 
             progressStream.on('progress', function(progress) {
                 node.status({fill:"blue", shape:"ring", text:progress.percentage.toFixed(2) + "%"});
