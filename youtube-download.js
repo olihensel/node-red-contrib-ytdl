@@ -15,7 +15,14 @@ module.exports = function(RED){
         this.status({});
         var node = this;
 
+        var handleError = function(url_, e){
+          var errorText =  "Cannot download "+ url_;
+          node.log(errorText, e);
+          node.status({fill:"red", shape:"ring", text: errorText});
+        }
+
         this.on('input', function(msg){
+          try {
             node.status({fill:"blue", shape:"ring", text:"Starting"});
             var path_ = msg.path;
             if(!path_){
@@ -68,12 +75,20 @@ module.exports = function(RED){
 
             //get info
             Ytdl.getInfo(url_, function(err, info) {
+              if(err){
+                handleError(url_, err);
+                return;
+              }
+
               //video title as file name
               msg.file = path_+info.title+"."+ext;
               download(url_, msg.file , options);
+
             });
 
-
+          } catch (e) {
+              handleError(url_, e);
+          }
         });
 
         this.on('close', function(){
