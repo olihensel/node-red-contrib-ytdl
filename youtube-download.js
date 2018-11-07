@@ -15,8 +15,11 @@ module.exports = function(RED){
         this.status({});
         var node = this;
 
-        var handleError = function(url_, e){
+        var handleError = function(url_, e, path_){
           var errorText =  "Cannot download "+ url_;
+          if(path_){
+            errorText = errorText + " on "+path_;
+          }
           node.log(errorText, e);
           node.status({fill:"red", shape:"ring", text: errorText});
         }
@@ -60,6 +63,8 @@ module.exports = function(RED){
             }
 
             var download = function(url_, path_, options){
+
+              node.log("Downloading " +url_+ " on "+path_);
               var ytdl = Ytdl(url_, options);
 
               ytdl.on('response', function(response) {
@@ -73,6 +78,13 @@ module.exports = function(RED){
               node.ytdl = ytdl;
             }
 
+            var cleanupTitle = function(title){
+              title = title.replace('/', '-');
+              title = title.replace('\\', '-');
+              title = title.replace('&', 'and');
+              return title;
+            }
+
             //get info
             Ytdl.getInfo(url_, function(err, info) {
               if(err){
@@ -81,13 +93,15 @@ module.exports = function(RED){
               }
 
               //video title as file name
-              msg.file = path_+info.title+"."+ext;
+              msg.title = cleanupTitle(info.title);
+              msg.file = path_+msg.title+"."+ext;
+
               download(url_, msg.file , options);
 
             });
 
           } catch (e) {
-              handleError(url_, e);
+              handleError(url_, e, path_);
           }
         });
 
