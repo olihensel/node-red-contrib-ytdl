@@ -122,6 +122,7 @@ module.exports = function(RED){
             if (!Fs.existsSync(playlistPath)){
               Fs.mkdirSync(playlistPath);
             }
+            msg.playlistTitle = title;
             //extracting video's id
             var urlList = [];
             for (var i = 0; i < playlist.items.length; i++) {
