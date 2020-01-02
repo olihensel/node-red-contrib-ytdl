@@ -9,3 +9,7 @@ Supports:
 * Youtube Playlist (as separates files)
 
 Mp4/Mp3 File are saved on file system.
+
+<a href="https://www.buymeacoffee.com/maxill1" target="_blank">
+<img src="https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-2.svg" alt="Buy Me A Coffee"></a>
+
