@@ -30,7 +30,8 @@ module.exports = function (RED) {
       title = title.replace(/\\/g, "-");
       title = title.replace(/&/g, "and");
       title = title.replace(/ HQ/g, "");
-      title = title.replace(/ /g, "_");
+      // Uncomment to replace spaces with underscores
+      // title = title.replace(/ /g, "_");
       return title;
     };
 
@@ -114,15 +115,19 @@ module.exports = function (RED) {
             node.log("\n\n");
             node.status({ fill: "blue", shape: "dot", text: prefix + " Done" });
 
+            const idTitle = info.videoDetails.media.song
+              ? info.videoDetails.media.song
+              : msg.title;
+            const idArtist = info.videoDetails.media.artist
+              ? info.videoDetails.media.artist
+              : msg.title;
+            const idAlbum = info.videoDetails.media.album
+              ? info.videoDetails.media.album
+              : msg.playlistTitle;
+
             try {
               //id3 tag
-              writeId3Tag(
-                output,
-                msg.title,
-                msg.title,
-                msg.playlistTitle,
-                index
-              );
+              writeId3Tag(output, idTitle, idArtist, idAlbum, index);
             } catch (e) {
               console.log("Error writing tags to " + output, e);
             }
