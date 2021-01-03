@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-ytdl",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Youtube download based on ytdl and ytpl",
   "main": "youtube-ytdl.js",
   "scripts": {
@@ -11,10 +11,10 @@
     "url": "git+https://github.com/maxill1/node-red-contrib-ytdl.git"
   },
   "dependencies": {
-    "node-id3": "^0.1.16",
+    "node-id3": "^0.2.2",
     "path": "^0.12.7",
-    "ytdl-core": "^2.1.5",
-    "ytpl": "^0.1.21"
+    "ytdl-core": "^4.4.0",
+    "ytpl": "^2.0.4"
   },
   "node-red": {
     "nodes": {
