@@ -13,7 +13,7 @@
   "dependencies": {
     "node-id3": "^0.2.2",
     "path": "^0.12.7",
-    "ytdl-core": "^4.4.0",
+    "ytdl-core": "^4.11.0",
     "ytpl": "^2.0.4"
   },
   "node-red": {
