@@ -2,10 +2,10 @@
     "youtube-ytdl": {
         "label": {
             "name":"Name",
-            "youtubeDownload": "Youtube Download",
+            "youtubeDownloadDistube": "Youtube Download Distube",
             "path": "Path",
             "url": "url",
-            "paletteLabel":"Youtube Download"
+            "paletteLabel":"Youtube Download Distube"
         }
     }
 }

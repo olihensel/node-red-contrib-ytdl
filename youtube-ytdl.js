@@ -2,7 +2,7 @@
 module.exports = function (RED) {
   "use strict";
 
-  function YoutubeDownload(n) {
+  function YoutubeDownloadDistube(n) {
     RED.nodes.createNode(this, n);
     this.url = n.url;
     this.urlType = n.urlType;
@@ -250,5 +250,5 @@ module.exports = function (RED) {
       node.status({ fill: "green", shape: "dot", text: "Done" });
     });
   }
-  RED.nodes.registerType("youtube-ytdl", YoutubeDownload);
+  RED.nodes.registerType("youtube-ytdl-distube", YoutubeDownloadDistube);
 };
