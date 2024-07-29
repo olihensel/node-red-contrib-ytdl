@@ -1,3 +1,4 @@
+//@ts-check
 module.exports = function (RED) {
   "use strict";
 
@@ -7,7 +8,7 @@ module.exports = function (RED) {
     this.urlType = n.urlType;
     this.path = n.path;
     this.pathType = n.pathType;
-    const ytdl = require("ytdl-core");
+    const ytdl = require("@distube/ytdl-core");
     const Fs = require("fs");
     const path = require("path");
     const ytpl = require("ytpl");
@@ -61,7 +62,7 @@ module.exports = function (RED) {
       }
       var url_ = urlList[index];
 
-      const prefix = ( index + 1 ) + "/" + size;
+      const prefix = index + 1 + "/" + size;
 
       node.status({ fill: "blue", shape: "ring", text: prefix + " starting" });
 

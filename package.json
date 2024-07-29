@@ -11,14 +11,14 @@
     "url": "git+https://github.com/maxill1/node-red-contrib-ytdl.git"
   },
   "dependencies": {
+    "@distube/ytdl-core": "^4.13.5",
     "node-id3": "^0.2.2",
     "path": "^0.12.7",
-    "ytdl-core": "^4.11.0",
     "ytpl": "^2.0.4"
   },
   "node-red": {
     "nodes": {
-      "youtube-download": "youtube-ytdl.js"
+      "youtube-download-distube": "youtube-ytdl.js"
     }
   },
   "keywords": [
